@@ -21,6 +21,8 @@ spec:
       resources:
         kinds:
         - Pod
+        namespaces:
+        - kyverno-test
     validate:
       message: "An image tag is required."
       pattern:
