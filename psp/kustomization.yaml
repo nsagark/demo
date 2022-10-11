@@ -1,0 +1,23 @@
+resources:
+  - disallow-capabilities.yaml
+  - disallow-host-namespaces.yaml
+  - disallow-host-path.yaml
+  - disallow-host-ports.yaml
+  - disallow-host-process.yaml
+  - disallow-privilege-escalation.yaml
+  - disallow-privileged-containers.yaml
+  - disallow-proc-mount.yaml
+  - disallow-selinux.yaml
+  - require-run-as-non-root-user.yaml
+  - require-run-as-nonroot.yaml
+  - restrict-apparmor-profiles.yaml
+  - restrict-seccomp.yaml
+  - restrict-sysctls.yaml
+  
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/validationFailureAction
+        value: audit
+    target:
+      kind: ClusterPolicy
