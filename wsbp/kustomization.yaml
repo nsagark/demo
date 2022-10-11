@@ -1,0 +1,15 @@
+resources:
+  - add-networkpolicy.yaml
+  - disallow-default-namespace.yaml
+  - disallow-latest-tag.yaml
+  - require-pod-probes.yaml
+  - require-requests-limits.yaml
+  - restrict-image-registries.yaml  
+  
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/validationFailureAction
+        value: audit
+    target:
+      kind: ClusterPolicy
