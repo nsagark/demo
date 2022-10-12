@@ -15,14 +15,15 @@ metadata:
       and the default (empty) Namespace should not be used. This policy validates that Pods
       specify a Namespace name other than `default`.      
 spec:
-  validationFailureAction: enforce 
+  validationFailureAction: audit 
   background: true
   rules:
   - name: validate-namespace
     match:
-      resources:
-        kinds:
-        - Pod
+      any:
+      - resources:
+           kinds:
+           - Pod
     validate:
       message: "Using 'default' namespace is not allowed."
       pattern:
@@ -30,13 +31,13 @@ spec:
           namespace: "!default"
   - name: validate-podcontroller-namespace
     match:
-      resources:
-        kinds:
-        - DaemonSet
-        - Deployment
-        - Job
-        - StatefulSet
-        - Pod
+      any:
+      - resources:
+          kinds:
+          - DaemonSet
+          - Deployment
+          - Job
+          - StatefulSet
     validate:
       message: "Using 'default' namespace is not allowed for pod controllers."
       pattern:
